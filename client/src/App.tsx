@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import { BrowserRouter,Link,Routes,Route } from 'react-router-dom'
-import './App.css'
-
+import { logo } from './assets'
+import { Home,CreatePost } from './Pages'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
