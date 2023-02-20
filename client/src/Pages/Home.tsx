@@ -50,11 +50,19 @@ const Home = (props: Props) => {
                       </h2>
                     )}
                     <div className='grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3'>
-                        {seachText ? (
+                        {seachText ? 
+                        (
                           <RenderCard 
-                          data={[]} 
-                          title="No search results found." />
-                        ) : <></>}
+                            data={[]} 
+                            title="No search results found." />
+                        )
+                         : 
+                        (
+                          <RenderCard 
+                            data={[]}
+                            title="No posts found"
+                          />
+                        )}
                     </div>
                 </>
               }
