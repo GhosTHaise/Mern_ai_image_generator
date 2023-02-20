@@ -1,6 +1,13 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+  labelName : string,
+  type : string,
+  name : string,
+  placeholder : string,
+  value : string,
+  handleChange : any,
+}
 
 const FormFiled = (props: Props) => {
   return (

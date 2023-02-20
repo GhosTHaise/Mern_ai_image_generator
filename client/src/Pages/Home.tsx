@@ -33,7 +33,13 @@ const Home = (props: Props) => {
               </p>
         </div>
         <div className='mt-16'>
-          <FormField />
+          <FormField 
+          labelName={''} 
+          type={''} 
+          name={''} 
+          placeholder={''} 
+          value={''} 
+          handleChange={''} />
         </div>
 
         <div  className='mt-10'>
