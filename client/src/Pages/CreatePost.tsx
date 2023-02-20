@@ -24,8 +24,12 @@ const CreatePost = (props: Props) => {
   }
 
 
-  const handleChange = () => {
-    
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+
+  }
+
+  const handleSurpriseMe = () => {
+
   }
 
   return (
@@ -51,6 +55,16 @@ const CreatePost = (props: Props) => {
                 placeholder="John Doe"
                 value={form.name}
                 handleChange={handleChange}
+                />
+                <FormField
+                labelName="Prompt"
+                type="text"
+                name="prompt"
+                placeholder="A futuristic cyborg dance club, neon lights ..."
+                value={form.prompt}
+                handleChange={handleChange}
+                isSurpriseMe={true}
+                handleSurpriseMe={handleSurpriseMe}
                 />
             </div>
         </form>
