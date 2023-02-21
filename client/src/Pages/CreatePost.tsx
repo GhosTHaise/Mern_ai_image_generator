@@ -29,11 +29,12 @@ const CreatePost = (props: Props) => {
 
 
   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-
+    setForm({...form,[e.target.name] : e.target.value});
   }
 
   const handleSurpriseMe = () => {
-
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({...form, prompt : randomPrompt})
   }
 
   return (
