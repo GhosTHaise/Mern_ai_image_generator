@@ -20,7 +20,7 @@ const CreatePost = (props: Props) => {
   const [loading, setLoading] = useState(false)
 
   const generateImage = () =>{
-
+    
   }
 
   const handleSubmit = () => {
