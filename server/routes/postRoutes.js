@@ -8,3 +8,5 @@ import PosT from "../mongodb/models/post.js";
 dotenv.config();
 
 const Router = express.Router();
+
+export default Router;
