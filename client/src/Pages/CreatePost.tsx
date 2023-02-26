@@ -30,10 +30,17 @@ const CreatePost = (props: Props) => {
             },
             body : JSON.stringify({prompt : form.prompt})
           });
+          const data = await response.json();
+          setForm({...form,photo : `data:image/jpeg;base64,${data.photo}`})
       }catch(err){
-
+          alert(err);
+      }finally{
+        setGeneratingImg(false);
       }
+    }else{
+      alert("Please enter a prompt.")
     }
+    console.log(form.photo)
   }
 
   const handleSubmit = () => {
