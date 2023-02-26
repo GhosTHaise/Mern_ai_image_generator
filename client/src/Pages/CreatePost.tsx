@@ -58,9 +58,14 @@ const CreatePost = (props: Props) => {
           }
           )
           await response.json();
+          navigate("/");
       } catch (error) {
-        
+        alert(error);
+      }finally{
+         setLoading(false);
       }
+    }else{
+        alert("Please enter a prompt and generate image");
     }
   }
 

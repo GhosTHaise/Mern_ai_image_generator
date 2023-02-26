@@ -4,9 +4,9 @@ import { Loader,Card,FormField } from '../Components'
 type Props = {}
 
 
-const RenderCard = ({data,title} : {data : {_id : string}[] , title : string})  => {
+const RenderCard = ({data,title} : {data : {_id : string,name : string,prompt : string ,image : string}[] , title : string})  => {
   if(data?.length > 0){
-    return <>{data.map(((post)=> <Card key={post._id} {...post}></Card>))}</>
+    return <>{data.map(((post ,index)=> <Card key={post._id} {...post}></Card>))}</>
   }
   return(
     <>
@@ -20,7 +20,32 @@ const RenderCard = ({data,title} : {data : {_id : string}[] , title : string})  
 const Home = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const [allPost, setAllPost] = useState(null);
-  const [seachText, setSeachText] = useState("v")
+  const [seachText, setSeachText] = useState("")
+
+  useEffect(()=>{
+    const fetchPosts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("http://localhost:8080/api/v1/post",{
+          method : "GET",
+          headers : {
+            "Content-Type" : "application/json"
+          }
+        });
+        if(response.ok){
+          const result = await response.json();
+          console.log(result)
+          setAllPost(result.data.reverse());
+        }
+      } catch (error) {
+          alert(error)
+      }finally{
+        setLoading(false);
+      }
+    };
+    fetchPosts()
+  },[]);
+
   return (
     <section className='max-w-7xl mx-auto'>
         <div className=''>
@@ -39,7 +64,7 @@ const Home = (props: Props) => {
           name={''} 
           placeholder={''} 
           value={''} 
-          handleChange={''} />
+          handleChange={()=>{}} />
         </div>
 
         <div  className='mt-10'>
@@ -65,7 +90,7 @@ const Home = (props: Props) => {
                          : 
                         (
                           <RenderCard 
-                            data={[]}
+                            data={allPost || []}
                             title="No posts found"
                           />
                         )}
