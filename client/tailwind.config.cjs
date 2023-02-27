@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       screens: {
         xs: '480px',
+        xl: "2000px"
       },
       fontFamily: {
         inter: ['Inter var', 'sans-serif'],

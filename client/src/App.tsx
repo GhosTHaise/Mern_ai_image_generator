@@ -28,6 +28,15 @@ function App() {
                   <Route path='/create-post' element={<CreatePost />} />
               </Routes>
           </main>
+
+          <footer className='fixed bottom-2 right-2 font-inter '>
+                <p className='xl:text-[1.35rem] text-[0.8rem] text-left text-gray-700  leading-[1.5]'>
+                    @2023 GhosT
+                </p>
+                <p className='xl:text-[1.35rem] text-[0.8rem] text-left text-gray-600 leading-[1.5]'>
+                    All right reserved
+                </p>
+          </footer>
       </BrowserRouter>
   )
 }
