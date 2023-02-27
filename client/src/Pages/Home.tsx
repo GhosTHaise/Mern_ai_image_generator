@@ -19,8 +19,10 @@ const RenderCard = ({data,title} : {data : {_id : string,name : string,prompt : 
 
 const Home = (props: Props) => {
   const [loading, setLoading] = useState(false);
-  const [allPost, setAllPost] = useState(null);
-  const [seachText, setSeachText] = useState("")
+  const [allPost, setAllPost] = useState<{_id : string,name : string,prompt : string ,image : string}[] | null>(null);
+  const [seachText, setSeachText] = useState("");
+  const [searchedResults, setSearchedResults] = useState<{_id : string,name : string,prompt : string ,image : string}[] | null>(null);
+  const [searchTimeout, setSearchTimeout] = useState<any>(null);
 
   useEffect(()=>{
     const fetchPosts = async () => {
@@ -46,6 +48,28 @@ const Home = (props: Props) => {
     fetchPosts()
   },[]);
 
+
+
+  const handleSearchChange = (e : React.ChangeEvent<HTMLInputElement>)=>{
+    
+    clearTimeout(searchTimeout);
+    
+    setSeachText(e.target.value);
+    
+    setSearchTimeout(
+      setTimeout(() => {
+        if(allPost){
+          const searchResults = allPost.filter((item)=>
+          item.name.toLowerCase() == seachText.toLowerCase() ||
+          item.prompt.toLowerCase().includes(seachText.toLowerCase())
+          );
+        setSearchedResults(searchResults);
+        }
+
+    }, 500)
+    );
+
+  }
   return (
     <section className='max-w-7xl mx-auto'>
         <div className=''>
@@ -59,12 +83,12 @@ const Home = (props: Props) => {
         </div>
         <div className='mt-16'>
           <FormField 
-          labelName={''} 
-          type={''} 
-          name={''} 
-          placeholder={''} 
-          value={''} 
-          handleChange={()=>{}} />
+          labelName={'Search posts'} 
+          type={'text'} 
+          name={'text'} 
+          placeholder={'Search posts'} 
+          value={seachText} 
+          handleChange={handleSearchChange} />
         </div>
 
         <div  className='mt-10'>
@@ -84,7 +108,7 @@ const Home = (props: Props) => {
                         {seachText ? 
                         (
                           <RenderCard 
-                            data={[]} 
+                            data={searchedResults || []} 
                             title="No search results found." />
                         )
                          : 
